@@ -139,6 +139,10 @@ makeinstall_host() {
 }
 
 pre_make_target() {
+  if [ -d "$PKG_DIR/hacks/drivers" ]; then
+    rsync -a "$PKG_DIR/hacks/drivers/" "$PKG_BUILD/drivers/"
+  fi
+
   pkg_lock_status "ACTIVE" "linux:target" "build"
 
   if [ "$TARGET_ARCH" = "x86_64" ]; then

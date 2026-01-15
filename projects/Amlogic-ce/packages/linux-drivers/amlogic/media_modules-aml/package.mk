@@ -14,6 +14,10 @@ PKG_TOOLCHAIN="manual"
 
 pre_make_target() {
   unset LDFLAGS
+
+  if [ -d "$PKG_DIR/hacks/drivers" ]; then
+    rsync -a "$PKG_DIR/hacks/drivers/" "$PKG_BUILD/drivers/"
+  fi
 }
 
 make_target() {
