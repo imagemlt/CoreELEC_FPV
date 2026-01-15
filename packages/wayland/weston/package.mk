@@ -2,34 +2,32 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="weston"
-PKG_VERSION="13.0.0"
-PKG_SHA256="52ff1d4aa2394a2e416c85a338b627ce97fa71d43eb762fd4aaf145d36fc795a"
+PKG_VERSION="10"
 PKG_LICENSE="MIT"
 PKG_SITE="https://wayland.freedesktop.org/"
-PKG_URL="https://gitlab.freedesktop.org/wayland/weston/-/releases/${PKG_VERSION}/downloads/${PKG_NAME}-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain wayland wayland-protocols libdrm libxkbcommon libinput cairo pango libjpeg-turbo dbus seatd"
+PKG_URL="https://wayland.freedesktop.org/releases/weston-10.0.0.tar.xz"
+PKG_DEPENDS_TARGET="toolchain wayland wayland-protocols libxkbcommon libinput cairo pango libjpeg-turbo dbus seatd"
 PKG_LONGDESC="Reference implementation of a Wayland compositor"
 
-PKG_MESON_OPTS_TARGET="-Dbackend-drm=true \
+PKG_MESON_OPTS_TARGET="-Dbackend-drm=false \
+		      -Ddeprecated-backend-fbdev=true \
                        -Dbackend-drm-screencast-vaapi=false \
                        -Dbackend-headless=false \
-                       -Dbackend-pipewire=false \
                        -Dbackend-rdp=false \
                        -Dscreenshare=false \
-                       -Dbackend-vnc=false \
                        -Dbackend-wayland=false \
                        -Dbackend-x11=false \
-                       -Dbackend-default=drm \
+                       -Dbackend-default=fbdev \
                        -Drenderer-gl=true \
                        -Dxwayland=false \
                        -Dsystemd=true \
                        -Dremoting=false \
                        -Dpipewire=false \
                        -Dshell-desktop=true \
-                       -Dshell-fullscreen=false \
+		       -Dshell-fullscreen=false \
                        -Dshell-ivi=false \
                        -Dshell-kiosk=false \
-                       -Ddesktop-shell-client-default="weston-desktop-shell" \
+                       -Ddesktop-shell-client-default='weston-desktop-shell' \
                        -Dcolor-management-lcms=false \
                        -Dimage-jpeg=true \
                        -Dimage-webp=false \

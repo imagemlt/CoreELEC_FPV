@@ -14,11 +14,11 @@ PKG_BUILD_FLAGS="-gold"
 pre_configure_target() {
   PKG_MESON_OPTS_TARGET="-Dgl=disabled \
                          -Dadder=disabled \
-                         -Dapp=disabled \
-                         -Daudioconvert=disabled \
+                         -Dapp=enabled \
+                         -Daudioconvert=enabled \
                          -Daudiomixer=disabled \
                          -Daudiorate=disabled \
-                         -Daudioresample=disabled \
+                         -Daudioresample=enabled \
                          -Daudiotestsrc=disabled \
                          -Dcompositor=disabled \
                          -Dencoding=disabled \

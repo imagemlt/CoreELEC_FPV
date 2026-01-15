@@ -65,7 +65,8 @@ PKG_MESON_OPTS_TARGET="-Dxorg=true \
                        -Dxpbproxy=false \
                        -Dlibunwind=false \
                        -Ddocs=false \
-                       -Ddevel-docs=false"
+                       -Ddevel-docs=false \
+                       "  # 添加这一行以启用fbdev驱动
 
 if [ ! "${OPENGL}" = "no" ]; then
   PKG_DEPENDS_TARGET+=" ${OPENGL} libepoxy"

@@ -14,11 +14,14 @@ PKG_LONGDESC="libXt provides the X Toolkit Intrinsics library, an abstract widge
 PKG_CONFIGURE_OPTS_TARGET="--enable-static \
                            --disable-shared \
                            --with-gnu-ld \
-                           --enable-malloc0returnsnull"
+                           --enable-malloc0returnsnull --with-pic"
+
+CFLAGS += -fPIC
+CONFIGURE_OPTS += --with-pic
 
 pre_make_target() {
   make -C util CC=${HOST_CC} \
-               CFLAGS="${HOST_CFLAGS} " \
+               CFLAGS="${HOST_CFLAGS} -fPIC " \
                LDFLAGS="${HOST_LDFLAGS}" \
                makestrs
 }
