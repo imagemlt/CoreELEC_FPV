@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "${1:-}" = "" ] || [ "${2:-}" = "" ]; then
+  echo "Usage: $0 /path/to/PKG_BUILD /path/to/hacks" >&2
+  echo "Note: syncs only files that already exist under hacks/." >&2
+  exit 1
+fi
+
+pkg_build="$1"
+src="${pkg_build}/"
+dst="$2"
+
+if [ ! -d "$src" ]; then
+  echo "Missing source dir: $src" >&2
+  exit 1
+fi
+
+if [ ! -d "$dst" ]; then
+  echo "Missing destination dir: $dst" >&2
+  exit 1
+fi
+
+tmp_list="$(mktemp)"
+trap 'rm -f "$tmp_list"' EXIT
+
+find "$dst" -type f -print | sed "s|^$dst/||" > "$tmp_list"
+
+rsync -a --checksum --itemize-changes --files-from="$tmp_list" "$src" "$dst"
