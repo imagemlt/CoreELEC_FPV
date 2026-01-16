@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
     xz-utils make file libxml-parser-perl \
     libjson-perl \
     golang-go \
-    git openssh-client zstd \
+    git openssh-client zstd cpio \
     --no-install-recommends \
 	&& update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9 && \
