@@ -18,18 +18,18 @@ RUN adduser --disabled-password --gecos '' docker \
  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN apt-get update && apt-get install -y \
-    wget bash bc gcc-8 sed patch patchutils tar bzip2 gzip perl gawk gperf zip unzip diffutils texinfo lzop python python3 \
-    g++-8 xfonts-utils xfonts-utils xfonts-utils xsltproc default-jre-headless \
+    wget bash bc gcc-9 sed patch patchutils tar bzip2 gzip perl gawk gperf zip unzip diffutils texinfo lzop python python3 \
+    g++-9 xfonts-utils xfonts-utils xfonts-utils xsltproc default-jre-headless \
     libc6-dev libncurses5-dev \
     u-boot-tools \
     xz-utils make file libxml-parser-perl \
     libjson-perl \
     golang-go \
-    git openssh-client \
+    git openssh-client zstd \
     --no-install-recommends \
-	&& update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 8 && \
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 8 && \
-    update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-8 8 \
+	&& update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9 && \
+    update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-9 9 \
  && rm -rf /var/lib/apt/lists/*
 
 ADD .bashrc /home/docker/.bashrc
